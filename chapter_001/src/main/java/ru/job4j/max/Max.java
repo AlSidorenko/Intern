@@ -15,7 +15,6 @@ public class Max {
 	 *@return - max element.
 	 */
 	 public int max(int first, int second) {
-        int maxelem = (first > second) ? first : second;
-        return maxelem;
+        return (first > second) ? first : second;
     }
 }
