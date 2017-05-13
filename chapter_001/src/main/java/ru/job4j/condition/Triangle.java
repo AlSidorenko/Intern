@@ -32,25 +32,25 @@ public class Triangle {
 		this.c = c;
 		}
     /**
-	 *Method area.
+	 *Method Length of Side of Triangle.
 	 *Gerone formula.
-	 *ab - Triangle side.
-	 *bc - Triangle side.
-	 *ac - Triangle side.
-	 *p - Semiperimeter.
-	 *@return Area Of A Triangle.
+	 *@param x - Point coordinate.
+	 *@param y - Point coordinate.
+	 *@return Length of Side.
+	 */
+    public double lengthSideTriangle(Point x, Point y) {
+        return Math.sqrt(Math.pow(x.getX() - y.getX(), 2) + Math.pow(x.getY() - y.getY(), 2));
+    }
+	/**
+	 *Method Area.
+	 *Gerone formula.
+	 *@return area of triangle.
 	 */
     public double area() {
-		double ab = Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
-        double ac = Math.sqrt(Math.pow(a.getX() - c.getX(), 2) + Math.pow(a.getY() - c.getY(), 2));
-        double bc = Math.sqrt(Math.pow(b.getX() - c.getX(), 2) + Math.pow(b.getY() - c.getY(), 2));
+        double ab = lengthSideTriangle(a, b);
+        double ac = lengthSideTriangle(a, c);
+        double bc = lengthSideTriangle(b, c);
         double p = (ab + ac + bc) / 2;
-        if (((ab + bc) <= ac) || ((ab + ac) <= bc) || ((ac + bc) <= ab) || ((ab - bc) >= ac) || ((ab - ac) >= bc) || ((bc - ac) >= ab)) {
-            return -1;
-        } else if ((ab == 0) || (bc == 0) || (ac == 0)) {
-            return 0;
-        } else {
-            return Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
-        }
+        return Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
     }
 }
