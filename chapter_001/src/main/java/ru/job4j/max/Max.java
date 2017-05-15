@@ -17,4 +17,14 @@ public class Max {
 	 public int max(int first, int second) {
         return (first > second) ? first : second;
     }
+	/**
+	 *Max element of three numbers.
+	 *@param first - first element.
+	 *@param second - second element.
+	 *@param third - third element.
+	 *@return - max element.
+	 */
+	public int maxOfThreeNumbers(int first, int second, int third) {
+        return (max(first, second) > third) ? max(first, second) : third;
+    }
 }

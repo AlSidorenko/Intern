@@ -23,4 +23,14 @@ public class MaxTest {
 		int expected = 3;
 		assertThat(result, is(expected));
     }
+	/**
+     * Test max element of third numbers.
+     */
+    @Test
+    public void whenMaxElemOfThirdNumb() {
+        Max maxElem = new Max();
+		int result = maxElem.maxOfThreeNumbers(4, 2, 3);
+		int expected = 4;
+		assertThat(result, is(expected));
+    }
 }
