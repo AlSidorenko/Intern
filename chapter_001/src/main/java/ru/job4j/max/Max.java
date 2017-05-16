@@ -25,6 +25,8 @@ public class Max {
 	 *@return - max element.
 	 */
 	public int maxOfThreeNumbers(int first, int second, int third) {
-        return (max(first, second) > third) ? max(first, second) : third;
+        int maxFirst = max(first, second);
+        int maxSecond = max(maxFirst, third);
+        return maxSecond;
     }
 }
