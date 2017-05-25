@@ -13,10 +13,11 @@ public class Paint {
 	 *@return - pyramid.
 	 */
     public String pyramid(int h) {
+        int width = 2 * h - 1;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < h; i++) {
-            for (int j = 0; j < 2 * h - 1; j++) {
-                if (((2 * h - 1) / 2) - i > j || ((2 * h - 1) / 2) + i < j) {
+            for (int j = 0; j < width; j++) {
+                if (((width) / 2) - i > j || ((width) / 2) + i < j) {
                     sb.append(" ");
                 } else {
                     sb.append("^");
