@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 		ArrayDuplicate ad = new ArrayDuplicate();
 		String[] values = {"Привет", "Мир", "Привет", "Супер", "Мир"};
 		String[] resultArray = ad.remove(values);
-		String[] expectedArray = {"Мир", "Привет", "Супер"};
+		String[] expectedArray = {"Привет", "Мир", "Супер"};
 		assertThat(resultArray, is(expectedArray));
     }
 }
