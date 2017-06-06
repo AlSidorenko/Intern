@@ -16,20 +16,19 @@ public class ArrayDuplicate {
 	 *@return - array.
 	 */
     public String[] remove(String[] array) {
-        int countRepeatElement = 0;
-        for (int i = 0; i < array.length - 2; i++) {
-            for (int j = i + 1; j < array.length; j++) {
+        int end = array.length;
+        for (int i = 0; i < end; i++) {
+            for (int j = i + 1; j < end; j++) {
                 if (array[i] == array[j]) {
-                    countRepeatElement++;
-                    String temp = array[j];
-                    for (int k = j; k < array.length - 1; k++) {
-                        array[k] = array[k + 1];
+                    int shiftLeft = j;
+                    for (int k = j + 1; k < end; k++, shiftLeft++) {
+                        array[shiftLeft] = array[k];
                     }
-                    array[array.length - 1] = temp;
-                    break;
+                    end--;
+                    j--;
                 }
             }
         }
-        return Arrays.copyOf(array, array.length - countRepeatElement);
+        return Arrays.copyOf(array, end);
     }
 }
