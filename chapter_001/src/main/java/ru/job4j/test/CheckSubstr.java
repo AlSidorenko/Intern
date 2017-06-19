@@ -22,8 +22,9 @@ public class CheckSubstr {
         if (subLength <= originLength) {
             for (int i = 0; !found && i < originLength - subLength + 1; i++) {
                 int j = 0;
-                while (j < subLength && originArray[i + j]==subArray[j])
+                while (j < subLength && originArray[i + j] == subArray[j]) {
                     j++;
+				}
                 found = j == subLength;
             }
         }

@@ -14,22 +14,26 @@ import static org.junit.Assert.assertThat;
  */
 public class CheckSubstrTest {
 	/**
-     * Test Check for substring.
+     * Test check for substring.
      */
     @Test
-    public void CheckForSubstring() {
-        Test t = new Test();
-		boolean result = t.contains("Java", "ava");
+    public void checkForSubstringTrue() {
+        CheckSubstr chs = new CheckSubstr();
+		String origin = "Java";
+        String sub = "ava";
+		boolean result = chs.contains(origin, sub);
 		boolean expected = true;
 		assertThat(result, is(expected));
     }
 	/**
-     * Test Check for substring.
+     * Test check for substring.
      */
     @Test
-    public void CheckForSubstring() {
-        Test t = new Test();
-		boolean result = t.contains("Java", "avo");
+    public void checkForSubstringFalse() {
+        CheckSubstr chs = new CheckSubstr();
+		String origin = "Java";
+        String sub = "avo";
+		boolean result = chs.contains(origin, sub);
 		boolean expected = false;
 		assertThat(result, is(expected));
     }
