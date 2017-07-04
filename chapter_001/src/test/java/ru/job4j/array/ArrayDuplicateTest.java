@@ -18,9 +18,9 @@ import static org.junit.Assert.assertThat;
     @Test
     public void whenRemoveDuplicatesThenArrayWithoutDuplicate() {
 		ArrayDuplicate ad = new ArrayDuplicate();
-		String[] values = {"Привет", "Мир", "Привет", "Супер", "Мир"};
+		String[] values = {"РџСЂРёРІРµС‚", "РњРёСЂ", "РџСЂРёРІРµС‚", "РЎСѓРїРµСЂ", "РњРёСЂ"};
 		String[] resultArray = ad.remove(values);
-		String[] expectedArray = {"Привет", "Мир", "Супер"};
+		String[] expectedArray = {"РџСЂРёРІРµС‚", "РњРёСЂ", "РЎСѓРїРµСЂ"};
 		assertThat(resultArray, is(expectedArray));
     }
 }
