@@ -38,7 +38,7 @@ public class InheritanceTest {
      * Test  Doctor Introduce Yourself.
      */
     @Test
-    public void doctorIntroduceYouself() {
+    public void doctorIntroduceYourself() {
         Doctor doctor = new Doctor("Ivan", 38, "m", "dentist");
         String result = (doctor.myAge(doctor.getName(), doctor.getAge()));
         String expected = "My name is Ivan. I'm 38 years old.";
