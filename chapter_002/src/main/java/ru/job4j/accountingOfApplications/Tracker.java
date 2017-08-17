@@ -75,4 +75,7 @@ public class Tracker {
         }
         return null;
     }
+    public Item[] getItems() {
+        return items;
+    }
 }
