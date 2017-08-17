@@ -57,7 +57,15 @@ public class Tracker {
                 temp[i] = null;
             }
         }
-        return temp;
+        int n = 0;
+        for (int i = 0; i < temp.length; i++)
+            if (temp[i] != null) n++;
+        Item[] _localAllElements = new Item[n];
+        int j = 0;
+        for (int i = 0; i < temp.length; i++)
+            if (temp[i] != null)
+                _localAllElements[j++] = temp[i];
+        return _localAllElements;
     }
 
     public Item findById(String id) {
