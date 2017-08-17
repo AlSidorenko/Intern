@@ -41,4 +41,28 @@ public class TrackerTest {
         tracker.delete(previous);
         assertThat(tracker.findById(previous.getId()), is(nullValue()));
     }
+/*
+    @Test
+    public void whenFindAll() {
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("1", "Alec", "desc", 25L, new String[]{"aaaaa", "bbbbb"}));
+        tracker.add(new Item("2", "Anna", "desc", 18L, new String[]{"ccccc", "eeeee"}));
+        assertThat(tracker.findAll(), is(tracker.getItems()));
+    }
+
+    @Test
+    public void whenfindByNameItem() {
+        Tracker tracker = new Tracker();
+        Item previous = tracker.add(
+                new Item("1", "Alec", "desc", 25L, new String[]{"aaaaa", "bbbbb"}));
+        assertThat(tracker.findByName("Alec"), is(previous));
+    }
+*/
+    @Test
+    public void whenfindByIdItem() {
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("1", "Alec", "desc", 25L, new String[]{"aaaaa", "bbbbb"}));
+        tracker.add(new Item("2", "Anna", "desc", 18L, new String[]{"ccccc", "eeeee"}));
+        assertThat(tracker.findById("1"), is(tracker.findAll()[0]));
+    }
 }
