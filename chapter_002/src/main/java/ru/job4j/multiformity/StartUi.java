@@ -18,23 +18,23 @@ public class StartUi {
      * @throws IOException - Exception.
      */
     public static void main(String[] args) throws IOException {
-        char choice;
+        char answer;
         char ignore;
         ConcoleInput ci = new ConcoleInput();
 
         for (;;) {
             do {
                 ci.showMenu();
-                choice = (char) System.in.read();
+                answer = (char) System.in.read();
                 do {
                     ignore = (char) System.in.read();
                 } while (ignore != '\n');
-            } while (!ci.isValid(choice));
-            if (choice == '6') {
+            } while (!ci.isValid(Character.toString(answer)));
+            if (ci.getEXIT().equals(Character.toString(answer))) {
                 break;
             }
             System.out.println(" ");
-            ci.trackerOn(choice);
+            ci.trackerOn(Character.toString(answer));
         }
     }
 }
