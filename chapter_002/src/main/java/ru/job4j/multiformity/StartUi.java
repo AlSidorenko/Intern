@@ -14,10 +14,9 @@ public class StartUi {
 
     /**
      * Starting method of the program.
-     * @param args - array.
      * @throws IOException - Exception.
      */
-    public static void main(String[] args) throws IOException {
+    public void init() throws IOException {
         char answer;
         char ignore;
         ConcoleInput ci = new ConcoleInput();
@@ -36,5 +35,14 @@ public class StartUi {
             System.out.println(" ");
             ci.trackerOn(Character.toString(answer));
         }
+    }
+
+    /**
+     * Start program.
+     * @param args - array.
+     * @throws IOException - Exception.
+     */
+    public static void main(String[] args) throws IOException {
+        new StartUi().init();
     }
 }
