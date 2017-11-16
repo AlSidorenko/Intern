@@ -4,69 +4,32 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Created on 01.09.2017.
+ * Created on 23.08.2017.
  *
+ * Class ConsoleInput for entering user data.
  * @author Aleks Sidorenko (alek.sidorenko1979@gmail.com).
  * @version $Id$.
  * @since 0.1.
  */
-public class ConsoleInput implements Input {
+public class ConcoleInput implements Input {
 
-    private Scanner scanner = new Scanner(System.in);
-
-    public String ask(String question) {
-        System.out.print(question);
-        return scanner.nextLine();
-    }
-
-    /**
-     * @param tracker - provides access to methods in the Tracker Class.
-     */
+    private Scanner sc = new Scanner(System.in);
     private Tracker tracker = new Tracker();
-
-    /**
-     * @param item - provides access to methods in the Item Class.
-     */
     private Item item = new Item();
-
-    /**
-     * @param ADD - add method marker.
-     */
     private static final String ADD = "0";
-
-    /**
-     * @param SHOW_ALL - Show All Item method marker.
-     */
     private static final String SHOW_ALL = "1";
-
-    /**
-     * @param EDIT - Edit Item method marker.
-     */
     private static final String EDIT = "2";
-
-    /**
-     * @param DELETE - Delete Item method marker.
-     */
     private static final String DELETE = "3";
-
-    /**
-     * @param FIND_BY_ID - Find Item By Id method marker.
-     */
     private static final String FIND_BY_ID = "4";
-
-    /**
-     * @param FIND_BY_NAME - Find Items by Name method marker.
-     */
     private static final String FIND_BY_NAME = "5";
-
-    /**
-     * @param EXIT - Exit Program method marker.
-     */
     private static final String EXIT = "6";
 
-    /**
-     * Method showMenu() - Demonstrates the possibility of operations with applications.
-     */
+    @Override
+    public String ask(String question) {
+        System.out.print(question);
+        return sc.nextLine();
+    }
+
     public void showMenu() {
         System.out.println("Information: ");
         System.out.println("0 - Add new Item.");
@@ -79,11 +42,6 @@ public class ConsoleInput implements Input {
         System.out.print("Select: ");
     }
 
-    /**
-     * Logical method for matching parameters.
-     * @param choise - Number of operation.
-     * @return - true or false.
-     */
     public boolean isValid(String choise) {
         int numb = Integer.parseInt(choise);
         if (numb < 0 | numb > 5 & numb != 6) {
@@ -92,54 +50,50 @@ public class ConsoleInput implements Input {
         return true;
     }
 
-    /**
-     * Method allows you to choose the action with the application.
-     * @param answer - Number of operation.
-     */
     public void trackerOn(String answer) {
 
         if (ADD.equals(answer)) {
             System.out.println("Add new Item.");
             System.out.print("Please, enter Id: ");
-            String id = scanner.next();
+            String id = sc.next();
             System.out.print("Please, enter Name: ");
-            String name = scanner.next();
+            String name = sc.next();
             System.out.print("Please, enter Description: ");
-            String desc = scanner.next();
+            String desc = sc.next();
             System.out.print("Please, enter Created (long): ");
-            long created = scanner.nextLong();
+            long created = sc.nextLong();
             System.out.print("Please, enter comments: ");
-            String comments = scanner.next();
-            tracker.add(new Item(id, name, desc, created));
+            String comments = sc.next();
+            tracker.add(new Item(id, name, desc, created, new String[]{comments}));
             System.out.println(" ");
         }
 
         if (SHOW_ALL.equals(answer)) {
             System.out.println("Show All Item.");
-            System.out.println(Arrays.toString(tracker.getAll()));
+            System.out.println(Arrays.toString(tracker.findAll()));
             System.out.println(" ");
         }
 
         if (EDIT.equals(answer)) {
             System.out.println("Edit Item.");
             System.out.print("Please, enter Id: ");
-            String idUpdate = scanner.next();
+            String idUpdate = sc.next();
             System.out.print("Please, enter Name: ");
-            String nameUpdate = scanner.next();
+            String nameUpdate = sc.next();
             System.out.print("Please, enter Description: ");
-            String descUpdate = scanner.next();
+            String descUpdate = sc.next();
             System.out.print("Please, enter Created (long): ");
-            long createdUpdate = scanner.nextLong();
+            long createdUpdate = sc.nextLong();
             System.out.print("Please, enter comments: ");
-            String commentsUpdate = scanner.next();
-            tracker.update(new Item(idUpdate, nameUpdate, descUpdate, createdUpdate));
+            String commentsUpdate = sc.next();
+            tracker.update(new Item(idUpdate, nameUpdate, descUpdate, createdUpdate, new String[]{commentsUpdate}));
             System.out.println(" ");
         }
 
         if (DELETE.equals(answer)) {
             System.out.println("Delete Item.");
             System.out.print("Please, enter Id: ");
-            String idDelete = scanner.next();
+            String idDelete = sc.next();
             tracker.delete(new Item(idDelete));
 
         }
@@ -147,22 +101,18 @@ public class ConsoleInput implements Input {
         if (FIND_BY_ID.equals(answer)) {
             System.out.println("Find Item by Id.");
             System.out.print("Please, enter Id: ");
-            String idFind = scanner.next();
+            String idFind = sc.next();
             System.out.println(tracker.findById(idFind));
         }
 
         if (FIND_BY_NAME.equals(answer)) {
             System.out.println("Find Items by Name.");
             System.out.print("Please, enter Name: ");
-            String nameFind = scanner.next();
+            String nameFind = sc.next();
             System.out.println(Arrays.toString(tracker.findByName(nameFind)));
         }
     }
 
-    /**
-     * A method that makes it possible to obtain a parameter.
-     * @return - The resulting parameter.
-     */
     public String getEXIT() {
         return EXIT;
     }

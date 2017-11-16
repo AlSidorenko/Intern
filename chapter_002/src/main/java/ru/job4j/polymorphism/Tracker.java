@@ -1,9 +1,9 @@
 package ru.job4j.polymorphism;
 
-import java.util.Random;
+import java.util.Arrays;
 
 /**
- * Created on 01.09.2017.
+ * Created on 08.08.2017.
  *
  * @author Aleks Sidorenko (alek.sidorenko1979@gmail.com).
  * @version $Id$.
@@ -11,14 +11,13 @@ import java.util.Random;
  */
 public class Tracker {
 
-    private Item[] items = new Item[10];
-    private int position = 0;
-    private static final Random RN = new Random();
+    private Item item = new Item();
+    private Item[] items = new Item[100];
+    private int elemId = 0;
 
-    public Item add (Item item) {
-        item.setId(generateId());
-        this.items[position++] = item;
-        return item;
+    public Item add(Item s) {
+        items[elemId++] = s;
+        return s;
     }
 
     public void update(Item s) {
@@ -38,12 +37,16 @@ public class Tracker {
         items = temp;
     }
 
-    public Item[] getAll () {
-        Item[] result = new Item[this.position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
+    public Item[] findAll() {
+        int countElenNull = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] == null) {
+                countElenNull++;
+            }
         }
-        return result;
+        Item[] temp = new Item[items.length - countElenNull];
+        System.arraycopy(items, 0, temp, 0, temp.length);
+        return temp;
     }
 
     public Item[] findByName(String name) {
@@ -56,32 +59,43 @@ public class Tracker {
             }
         }
         int n = 0;
-        for (int i = 0; i < temp.length; i++)
-            if (temp[i] != null) n++;
-
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i] != null) {
+                n++;
+            }
+        }
         // 2 : allocate new array
         Item[] localAllElements = new Item[n];
 
         // 3 : copy not null elements
         int j = 0;
-        for (int i = 0; i < temp.length; i++)
-            if (temp[i] != null)
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i] != null) {
                 localAllElements[j++] = temp[i];
-
+            }
+        }
         return localAllElements;
     }
 
-    protected Item findById(String id) {
-        Item result = null;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                break;
+    public Item findById(String id) {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null && items[i].getId().equals(id)) {
+                return items[i];
             }
         }
-        return result;
+        return null;
     }
 
-    String generateId() {
-        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+    public Item[] getItems() {
+        return items;
+    }
+
+    @Override
+    public String toString() {
+        return "Tracker{" + "items=" + "id='" + item.getId() + '\''
+                + ", name='" + item.getName() + '\''
+                + ", desc='" + item.getDesc() + '\''
+                + ", created=" + item.getCreated()
+                + ", comments=" + Arrays.toString(item.getComments()) + '}';
     }
 }

@@ -10,8 +10,10 @@ package ru.job4j.polymorphism;
 public class StartUITest {
     public static void main(String[] args) {
 
-        Input input = new StabInput(new String[]{"create stub task"});
+        /*
+        Input input = new StabInput(new String[]{"0", "test", "desc", "6"});
         //Input input = new ConsoleInput();
         new StartUI(input).init();
+        */
     }
 }

@@ -9,11 +9,19 @@ package ru.job4j.polymorphism;
  */
 public class StabInput implements Input {
 
+    private String id;
+    public String name;
+    public String description;
+    public String create;
+
     private String[] answers;
     private int position = 0;
 
-    public StabInput(String[] answers) {
-        this.answers = answers;
+    public StabInput(String id, String name, String description, String create) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.create = create;
     }
 
     public String ask(String question) {

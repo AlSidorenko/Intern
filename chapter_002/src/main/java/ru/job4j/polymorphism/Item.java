@@ -1,49 +1,82 @@
 package ru.job4j.polymorphism;
 
+import java.util.Arrays;
+
 /**
- * Created on 01.09.2017.
+ * Created on 08.08.2017.
  *
  * @author Aleks Sidorenko (alek.sidorenko1979@gmail.com).
  * @version $Id$.
  * @since 0.1.
  */
 public class Item {
-    private String id;
-    public String name;
-    public String description;
-    public long create;
 
-    public Item() {
+    private String id;
+    private String name;
+    private String desc;
+    private long created;
+    private String[] comments;
+
+    public Item(String id, String name, String desc, long created, String[] comments) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.created = created;
+        this.comments = comments;
     }
 
     public Item(String id) {
         this.id = id;
     }
 
-    public Item(String id, String name, String description, long create) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.create = create;
-    }
+    public Item() { }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDescription() {
-        return description;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public long getCreate() {
-        return create;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public long getCreated() {
+        return created;
+    }
+
+    public void setCreated(long created) {
+        this.created = created;
+    }
+
+    public String[] getComments() {
+        return comments;
+    }
+
+    public void setComments(String[] comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + ", desc='" + desc + '\''
+                + ", created=" + created
+                + ", comments=" + Arrays.toString(comments) + '}';
     }
 }
