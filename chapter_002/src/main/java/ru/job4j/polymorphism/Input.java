@@ -8,5 +8,10 @@ package ru.job4j.polymorphism;
  * @since 0.1.
  */
 public interface Input {
+
+    /**
+     * @param question - param of method interface.
+     * @return - string.
+     */
     String ask(String question);
 }

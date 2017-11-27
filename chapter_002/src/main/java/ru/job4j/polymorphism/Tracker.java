@@ -11,15 +11,35 @@ import java.util.Arrays;
  */
 public class Tracker {
 
+    /**
+     * An object of Item.
+     */
     private Item item = new Item();
+
+    /**
+     * An array of 100 elements.
+     */
     private Item[] items = new Item[100];
+
+    /**
+     * @param elemId - The index of the array.
+     */
     private int elemId = 0;
 
+    /**
+     * Method of adding new applications.
+     * @param s - new application form.
+     * @return - new array.
+     */
     public Item add(Item s) {
         items[elemId++] = s;
         return s;
     }
 
+    /**
+     * Method of updating the data.
+     * @param s - new application form.
+     */
     public void update(Item s) {
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && items[i].getId().equals(s.getId())) {
@@ -29,6 +49,10 @@ public class Tracker {
         }
     }
 
+    /**
+     * Method of deleting an application.
+     * @param s - original number of application.
+     */
     public void delete(Item s) {
         int n = Integer.parseInt(s.getId()) - 1;
         Item[] temp = new Item[items.length - 1];
@@ -37,6 +61,10 @@ public class Tracker {
         items = temp;
     }
 
+    /**
+     * The method of displaying the array data.
+     * @return - all array.
+     */
     public Item[] findAll() {
         int countElenNull = 0;
         for (int i = 0; i < items.length; i++) {
@@ -49,6 +77,11 @@ public class Tracker {
         return temp;
     }
 
+    /**
+     * The method of searching for data on id.
+     * @param name - name of person.
+     * @return - Data of the person.
+     */
     public Item[] findByName(String name) {
         Item[] temp = new Item[items.length];
         for (int i = 0; i < items.length; i++) {
@@ -77,6 +110,11 @@ public class Tracker {
         return localAllElements;
     }
 
+    /**
+     * The method of searching for data on id.
+     * @param id - original number.
+     * @return - Data of the person.
+     */
     public Item findById(String id) {
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
@@ -86,6 +124,10 @@ public class Tracker {
         return null;
     }
 
+    /**
+     * A method that makes it possible to obtain a parameter.
+     * @return - The resulting parameter.
+     */
     public Item[] getItems() {
         return items;
     }
