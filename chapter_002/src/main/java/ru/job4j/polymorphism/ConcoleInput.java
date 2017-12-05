@@ -1,6 +1,5 @@
 package ru.job4j.polymorphism;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
