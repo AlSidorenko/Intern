@@ -1,4 +1,4 @@
-# Junior
+# Intern
 
 ### [Проект Job4j](http://job4j.ru/courses/java_with_zero_to_job.html)
     Основная задача курса - это научться теоретическим знаниям и практическим навыкам разработки на языке Java, 
