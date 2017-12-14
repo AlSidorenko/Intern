@@ -205,12 +205,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Please, enter the task's id: ");
             int num = (Integer.parseInt(id) - 1);
-            System.out.println(
-                    String.format("%s. %s, %s, %s, %s.", id, tracker.findAll()[num].getName(),
-                            tracker.findAll()[num].getDesc(), Long.toString(tracker.findAll()[num].getCreated()),
-                            Arrays.toString(tracker.findAll()[num].getComments()))
-            );
-            //System.out.println(tracker.findById(id));
+            System.out.println(tracker.findById(id));
         }
 
         @Override
