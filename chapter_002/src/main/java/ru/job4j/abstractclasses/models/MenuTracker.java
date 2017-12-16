@@ -1,4 +1,9 @@
-package ru.job4j.abstractclasses;
+package ru.job4j.abstractclasses.models;
+
+import ru.job4j.abstractclasses.start.BaseAction;
+import ru.job4j.abstractclasses.start.Input;
+import ru.job4j.abstractclasses.start.Task;
+import ru.job4j.abstractclasses.start.UserAction;
 
 import java.util.Arrays;
 

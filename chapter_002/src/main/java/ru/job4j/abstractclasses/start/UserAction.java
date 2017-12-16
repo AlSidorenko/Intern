@@ -1,4 +1,6 @@
-package ru.job4j.abstractclasses;
+package ru.job4j.abstractclasses.start;
+
+import ru.job4j.abstractclasses.models.Tracker;
 
 /**
  * Created on 04.12.2017.

@@ -1,4 +1,4 @@
-package ru.job4j.abstractclasses;
+package ru.job4j.abstractclasses.start;
 
 /**
  * Created on 08.12.2017.
