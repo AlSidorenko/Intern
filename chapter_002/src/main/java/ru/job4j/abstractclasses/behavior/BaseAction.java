@@ -1,4 +1,4 @@
-package ru.job4j.abstractclasses.start;
+package ru.job4j.abstractclasses.behavior;
 
 
 /**

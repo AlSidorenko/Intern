@@ -1,5 +1,6 @@
-package ru.job4j.abstractclasses.start;
+package ru.job4j.abstractclasses.behavior;
 
+import ru.job4j.abstractclasses.input.Input;
 import ru.job4j.abstractclasses.models.Tracker;
 
 /**

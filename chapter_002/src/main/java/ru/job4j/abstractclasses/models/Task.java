@@ -1,7 +1,4 @@
-package ru.job4j.abstractclasses.start;
-
-
-import ru.job4j.abstractclasses.models.Item;
+package ru.job4j.abstractclasses.models;
 
 /**
  * Created on 01.09.2017.

@@ -1,4 +1,6 @@
-package ru.job4j.abstractclasses.start;
+package ru.job4j.abstractclasses.input;
+
+import ru.job4j.abstractclasses.exceptions.MenuOutException;
 
 import java.util.Scanner;
 

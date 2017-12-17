@@ -1,7 +1,9 @@
-package ru.job4j.abstractclasses.start;
+package ru.job4j.abstractclasses;
 
-import ru.job4j.abstractclasses.models.MenuTracker;
+import ru.job4j.abstractclasses.behavior.MenuTracker;
 import ru.job4j.abstractclasses.models.Tracker;
+import ru.job4j.abstractclasses.input.Input;
+import ru.job4j.abstractclasses.input.ValidateInput;
 
 /**
  * Created on 14.11.2017.
