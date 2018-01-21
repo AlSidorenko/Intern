@@ -9,6 +9,10 @@ package ru.job4j.chessboard;
  */
 public class Bishop extends Figure {
 
+    /**
+     * Constructor of class Bishop.
+     * @param position - Parameter for placing a chess piece.
+     */
     public Bishop(Cell position) {
         super(position);
     }
@@ -21,12 +25,6 @@ public class Bishop extends Figure {
         if (horizontalDistance != verticalDistance) {
             throw new Exception("ImpossibleMoveException");
         }
-            /*try {
-                throw new Exception("ImpossibleMoveException");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
-
         int horizontalCoefficient = dest.getX() - source.getX() > 0 ? 1 : -1;
         int verticalCoefficient = dest.getY() - source.getY() > 0 ? 1 : -1;
 

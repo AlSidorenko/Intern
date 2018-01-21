@@ -9,13 +9,32 @@ package ru.job4j.chessboard;
  */
 public abstract class Figure {
 
-    final Cell position;
+    /**
+     * The position of the chess piece on the board.
+     */
+    private final Cell position;
 
+    /**
+     * Constructor with parameter.
+     * @param position - position of the chess piece on the board.
+     */
     public Figure(Cell position) {
         this.position = position;
     }
 
-    abstract Cell[] way(Cell source, Cell dest) throws Exception; // throw ImpossibleMoveException
+    /**
+     * Abstract method of remove the chess piece.
+     * @param source - Initial position.
+     * @param dest - The final position.
+     * @return - new Cell position.
+     * @throws Exception - exception.
+     */
+    abstract Cell[] way(Cell source, Cell dest) throws Exception;
 
+    /**
+     * Method of copy Figure.
+     * @param dest - The final position.
+     * @return - Destination Cell position.
+     */
     abstract Figure copy(Cell dest);
 }
