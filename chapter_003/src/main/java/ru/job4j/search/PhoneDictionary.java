@@ -13,6 +13,11 @@ import java.util.List;
 public class PhoneDictionary {
 
     /**
+     * Reference variable.
+     */
+    private Person person;
+
+    /**
      * List of Person.
      */
     private List<Person> persons = new ArrayList<Person>();
@@ -33,15 +38,15 @@ public class PhoneDictionary {
      */
     public List<Person> find(String key) {
         List<Person> result = new ArrayList<>();
-        for (int i = 0; i < persons.size(); i++) {
-            if (persons.get(i) != null & persons.get(i).getName().contains(key)) {
-                 result.add(persons.get(i));
-            } else if (persons.get(i) != null & persons.get(i).getSurname().contains(key)) {
-                result.add(persons.get(i));
-            } else if (persons.get(i) != null & persons.get(i).getPhone().contains(key)) {
-                result.add(persons.get(i));
-            } else if (persons.get(i) != null & persons.get(i).getAddress().contains(key)) {
-                result.add(persons.get(i));
+        for (Person person : persons) {
+            if (person != null & person.getName().contains(key)) {
+                 result.add(person);
+            } else if (person != null & person.getSurname().contains(key)) {
+                result.add(person);
+            } else if (person != null & person.getPhone().contains(key)) {
+                result.add(person);
+            } else if (person != null & person.getAddress().contains(key)) {
+                result.add(person);
             } else {
                 result.add(null);
             }
@@ -51,7 +56,10 @@ public class PhoneDictionary {
 
     @Override
     public String toString() {
-        return "PhoneDictionary{"
-                + "persons= " + persons + '}';
+        return "Person{"
+                + "name= '" + person.getName() + '\''
+                + ", surname= '" + person.getSurname() + '\''
+                + ", phone= '" + person.getPhone() + '\''
+                + ", address= '" + person.getAddress() + '\'' + '}';
     }
 }
