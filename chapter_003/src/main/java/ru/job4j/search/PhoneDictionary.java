@@ -13,11 +13,6 @@ import java.util.List;
 public class PhoneDictionary {
 
     /**
-     * Reference variable.
-     */
-    private Person person;
-
-    /**
      * List of Person.
      */
     private List<Person> persons = new ArrayList<Person>();
@@ -38,6 +33,13 @@ public class PhoneDictionary {
      */
     public List<Person> find(String key) {
         List<Person> result = new ArrayList<>();
+
+        for (Person person : persons) {
+            if(person.toString().contains(key))  {
+                result.add(person);
+            }
+        }
+        /*
         for (Person person : persons) {
             if (person != null & person.getName().contains(key)) {
                  result.add(person);
@@ -51,15 +53,13 @@ public class PhoneDictionary {
                 result.add(null);
             }
         }
+        */
         return result;
     }
 
     @Override
     public String toString() {
-        return "Person{"
-                + "name= '" + person.getName() + '\''
-                + ", surname= '" + person.getSurname() + '\''
-                + ", phone= '" + person.getPhone() + '\''
-                + ", address= '" + person.getAddress() + '\'' + '}';
+        return "PhoneDictionary{"
+                + "persons=" + persons + '}';
     }
 }
