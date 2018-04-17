@@ -32,16 +32,5 @@ public class ConvertList2Array {
             }
         }
         return result;
-
-        // second version.
-        /*int cells = 3;
-        int[][] array = new int[cells][rows];
-        int counter = 0;
-
-        for (Integer value : list) {
-            array[counter / rows][counter % rows] = value;
-            counter++;
-        }
-        return array;*/
     }
 }
