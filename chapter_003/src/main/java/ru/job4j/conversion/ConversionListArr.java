@@ -19,8 +19,8 @@ public class ConversionListArr {
      */
     public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<>();
-        for (int[] ints: list) {
-            for (int i: ints) {
+        for (int[] in: list) {
+            for (int i: in) {
                 result.add(i);
             }
         }
