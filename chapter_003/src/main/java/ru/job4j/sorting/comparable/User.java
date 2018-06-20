@@ -32,7 +32,7 @@ public class User implements Comparable<User> {
 
     @Override
     public int compareTo(User o) {
-        return age > o.age ? 1 : -1;
+        return Integer.compare(this.age, o.age);
     }
 
     @Override
