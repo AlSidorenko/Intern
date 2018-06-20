@@ -1,5 +1,7 @@
 package ru.job4j.sorting.comparator;
 
+import java.util.Objects;
+
 /**
  * Created on 05.06.2018.
  *
@@ -53,5 +55,23 @@ public class User {
         return "User{"
                 + "name='" + name + '\''
                 + ", age=" + age + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return age == user.age && Objects.equals(name, user.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, age);
     }
 }
