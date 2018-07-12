@@ -23,7 +23,7 @@ public class Paint {
                     sb.append("^");
                 }
             }
-            sb.append("\r\n");
+            sb.append(System.lineSeparator());
         }
         return sb.toString();
     }
