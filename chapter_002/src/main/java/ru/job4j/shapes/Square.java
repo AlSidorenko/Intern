@@ -1,5 +1,7 @@
 package ru.job4j.shapes;
 
+import static java.lang.String.format;
+
 /**
  * Created on 08.09.2017.
  *
@@ -16,11 +18,16 @@ public class Square implements Shape {
      * @return - square.
      */
     public String pic() {
+        String line = System.getProperty("line.separator");
         StringBuilder sb = new StringBuilder();
-        sb.append("*******\r\n");
-        sb.append("*******\r\n");
-        sb.append("*******\r\n");
-        sb.append("*******\r\n");
+        sb.append("*******");
+        sb.append(System.lineSeparator());
+        sb.append("*******");
+        sb.append(System.lineSeparator());
+        sb.append("*******");
+        sb.append(System.lineSeparator());
+        sb.append("*******");
+        sb.append(System.lineSeparator());
         return sb.toString();
     }
 }

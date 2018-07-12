@@ -17,10 +17,14 @@ public class Triangle implements Shape {
      */
     public String pic() {
         StringBuilder sb = new StringBuilder();
-        sb.append("   *   \r\n");
-        sb.append("  ***  \r\n");
-        sb.append(" ***** \r\n");
-        sb.append("*******\r\n");
+        sb.append("   *   ");
+        sb.append(System.lineSeparator());
+        sb.append("  ***  ");
+        sb.append(System.lineSeparator());
+        sb.append(" ***** ");
+        sb.append(System.lineSeparator());
+        sb.append("*******");
+        sb.append(System.lineSeparator());
         return sb.toString();
     }
 }
