@@ -1,7 +1,5 @@
 package ru.job4j.shapes;
 
-import static java.lang.String.format;
-
 /**
  * Created on 08.09.2017.
  *
