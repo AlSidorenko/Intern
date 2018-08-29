@@ -9,7 +9,7 @@ import java.util.Objects;
  * @version $Id$.
  * @since 0.1.
  */
-public class User {
+public class User implements Comparable<User> {
 
     /**
      * Name of user.
@@ -29,7 +29,8 @@ public class User {
 
     /**
      * Constructor.
-     * @param name - name of user.
+     *
+     * @param name     - name of user.
      * @param passport - passport data of user.
      */
     public User(String name, String passport) {
@@ -39,6 +40,7 @@ public class User {
 
     /**
      * Get method.
+     *
      * @return - name.
      */
     public String getName() {
@@ -47,6 +49,7 @@ public class User {
 
     /**
      * Get method.
+     *
      * @return - data passport.
      */
     public String getPassport() {
@@ -68,7 +71,22 @@ public class User {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, passport);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "name='"
+                + name + '\'' + ", passport='"
+                + passport + '\'' + '}';
+    }
+
+    @Override
+    public int compareTo(User user) {
+        int nameComparisonResult = this.getName().compareTo(user.getName());
+        if (nameComparisonResult == 0) {
+            return this.getPassport().compareTo(user.getPassport());
+        }
+        return nameComparisonResult;
     }
 }

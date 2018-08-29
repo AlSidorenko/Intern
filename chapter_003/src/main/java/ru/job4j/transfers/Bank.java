@@ -16,81 +16,126 @@ public class Bank {
     /**
      * A collection that indicates that each user can have a list of bank accounts.
      */
-    private TreeMap<User, ArrayList<Account>> treeMap = new TreeMap<>();
+    private TreeMap<User, ArrayList<Account>> bank = new TreeMap<>();
 
     /**
      * The method of adding a user to the collection.
+     *
      * @param user - user.
      */
     public void addUser(User user) {
-        this.treeMap.put(user, new ArrayList<>());
+        this.bank.put(user, new ArrayList<>());
     }
 
     /**
      * The method deletes the user from the collection.
+     *
      * @param user - user.
      */
     public void delete(User user) {
-        this.treeMap.remove(user);
+        this.bank.remove(user);
     }
 
     /**
      * The method adds an account to the user in the collection.
-     * @param user - user.
+     *
+     * @param user    - user.
      * @param account - account.
      */
     public void add(User user, Account account) {
-        this.treeMap.get(user).add(account);
+        this.bank.get(user).add(account);
     }
 
     /**
      * Get method.
-     * @param user - user.
+     *
+     * @param user    - user.
      * @param account - account.
      * @return - index of account.
      */
     private Account getActualAccount(User user, Account account) {
-        ArrayList<Account> list = this.treeMap.get(user);
+        ArrayList<Account> list = this.bank.get(user);
         return list.get(list.indexOf(account));
     }
 
     /**
      * The method deletes the account from the user.
-     * @param user - user.
+     *
+     * @param user    - user.
      * @param account - account.
      */
     public void deleteAccount(User user, Account account) {
-        this.treeMap.get(user).remove(account);
+        this.bank.get(user).remove(account);
     }
 
     /**
      * Get method.
+     *
      * @param user - user.
      * @return - collection user.
      */
-    public List<Account> getAccounts(User user) {
-        return this.treeMap.get(user);
+    public List<Account> getUserAccounts(User user) {
+        return this.bank.get(user);
     }
 
     /**
      * The method checks to determine the possibility of making money transfers.
-     * @param user1 - user first.
-     * @param account1 - account first.
-     * @param user2 - user second.
-     * @param account2 - account second.
-     * @param amount - amount transfer.
-     * @return - boolean.
+     *
+     * @param srcPassport  - first passport.
+     * @param srcRequisite - first requisite.
+     * @param destPassport - destination passport.
+     * @param dstRequisite - destination requisite.
+     * @param amount       - amount.
+     * @return - boolean result.
      */
-    public boolean transfer(User user1, Account account1,
-                                 User user2, Account account2, double amount) {
-        return this.treeMap.get(user1).contains(account1)
-                && this.treeMap.get(user2).contains(account2)
-                && getActualAccount(user1, account1).transfer(
-                getActualAccount(user2, account2), amount);
+    public boolean transferMoney(String srcPassport, String srcRequisite,
+                                 String destPassport, String dstRequisite, double amount) {
+        User sourceUser = getUserByPassport(srcPassport);
+        User destinationUser = getUserByPassport(destPassport);
+        if (sourceUser == null || destinationUser == null) {
+            return false;
+        }
+        Account sourceAccount = getAccountByUserAndRequisites(sourceUser, srcRequisite);
+        Account destinationAccount = getAccountByUserAndRequisites(destinationUser, dstRequisite);
+        if (sourceAccount == null || destinationAccount == null) {
+            return false;
+        }
+        return sourceAccount.transfer(destinationAccount, amount);
+    }
+
+    /**
+     * Method checks the user's account.
+     *
+     * @param sourceUser   - user.
+     * @param srcRequisite - requisite.
+     * @return - account.
+     */
+    private Account getAccountByUserAndRequisites(User sourceUser, String srcRequisite) {
+        for (Account account : this.getUserAccounts(sourceUser)) {
+            if (srcRequisite.equals(account.getRequisites())) {
+                return account;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Method checks for compliance with the passport.
+     *
+     * @param srcPassport - passport ID.
+     * @return - passport.
+     */
+    private User getUserByPassport(String srcPassport) {
+        for (User user : bank.keySet()) {
+            if (srcPassport.equals(user.getPassport())) {
+                return user;
+            }
+        }
+        return null;
     }
 
     @Override
     public String toString() {
-        return "Bank{" + "accounts=" + treeMap + "}";
+        return "Bank{" + "accounts=" + bank + "}";
     }
 }

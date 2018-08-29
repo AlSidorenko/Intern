@@ -24,7 +24,8 @@ public class Account {
 
     /**
      * Constructor.
-     * @param values - amount of money.
+     *
+     * @param values     - amount of money.
      * @param requisites - requisites of the bank account.
      */
     public Account(double values, String requisites) {
@@ -34,6 +35,7 @@ public class Account {
 
     /**
      * Get method.
+     *
      * @return - values.
      */
     public double getValues() {
@@ -42,6 +44,7 @@ public class Account {
 
     /**
      * Get method.
+     *
      * @return - requisites.
      */
     public String getRequisites() {
@@ -50,8 +53,9 @@ public class Account {
 
     /**
      * The method of which allows the possibility of making a money transfer.
+     *
      * @param destination - Requisites of the recipient.
-     * @param amount - value.
+     * @param amount      - value.
      * @return - boolean.
      */
     boolean transfer(Account destination, double amount) {
