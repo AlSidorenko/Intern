@@ -24,7 +24,7 @@ public class Bank {
      * @param user - user.
      */
     public void addUser(User user) {
-        this.bank.put(user, new ArrayList<>());
+        this.bank.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
@@ -92,15 +92,18 @@ public class Bank {
                                  String destPassport, String dstRequisite, double amount) {
         User sourceUser = getUserByPassport(srcPassport);
         User destinationUser = getUserByPassport(destPassport);
+        Account sourceAccount = getAccount(sourceUser, srcRequisite);
+        Account destinationAccount = getAccount(destinationUser, dstRequisite);
+
+        boolean rsl;
         if (sourceUser == null || destinationUser == null) {
-            return false;
+            rsl = false;
+        } else if (sourceAccount == null || destinationAccount == null) {
+            rsl = false;
+        } else {
+            rsl = sourceAccount.transfer(destinationAccount, amount);
         }
-        Account sourceAccount = getAccountByUserAndRequisites(sourceUser, srcRequisite);
-        Account destinationAccount = getAccountByUserAndRequisites(destinationUser, dstRequisite);
-        if (sourceAccount == null || destinationAccount == null) {
-            return false;
-        }
-        return sourceAccount.transfer(destinationAccount, amount);
+        return rsl;
     }
 
     /**
@@ -110,13 +113,14 @@ public class Bank {
      * @param srcRequisite - requisite.
      * @return - account.
      */
-    private Account getAccountByUserAndRequisites(User sourceUser, String srcRequisite) {
+    private Account getAccount(User sourceUser, String srcRequisite) {
+        Account rsl = null;
         for (Account account : this.getUserAccounts(sourceUser)) {
             if (srcRequisite.equals(account.getRequisites())) {
-                return account;
+                rsl = account;
             }
         }
-        return null;
+        return rsl;
     }
 
     /**
@@ -126,12 +130,13 @@ public class Bank {
      * @return - passport.
      */
     private User getUserByPassport(String srcPassport) {
+        User rsl = null;
         for (User user : bank.keySet()) {
             if (srcPassport.equals(user.getPassport())) {
-                return user;
+                rsl = user;
             }
         }
-        return null;
+        return rsl;
     }
 
     @Override
