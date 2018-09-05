@@ -54,8 +54,13 @@ public class Bank {
      * @return - index of account.
      */
     private Account getActualAccount(User user, Account account) {
+        Account index = null;
         ArrayList<Account> list = this.bank.get(user);
-        return list.get(list.indexOf(account));
+        if (user.getName() != null && user.getPassport() != null
+                && account.getRequisites() != null) {
+            index = list.get(list.indexOf(account));
+        }
+        return index;
     }
 
     /**
@@ -75,7 +80,11 @@ public class Bank {
      * @return - collection user.
      */
     public List<Account> getUserAccounts(User user) {
-        return this.bank.get(user);
+        List<Account> list = this.bank.get(user);
+        if (user.getName() == null || user.getPassport() == null) {
+            list = null;
+        }
+        return list;
     }
 
     /**
@@ -95,12 +104,9 @@ public class Bank {
         Account sourceAccount = getAccount(sourceUser, srcRequisite);
         Account destinationAccount = getAccount(destinationUser, dstRequisite);
 
-        boolean rsl;
-        if (sourceUser == null || destinationUser == null) {
-            rsl = false;
-        } else if (sourceAccount == null || destinationAccount == null) {
-            rsl = false;
-        } else {
+        boolean rsl = false;
+        if (sourceUser != null && destinationUser != null
+                && sourceAccount != null && destinationAccount != null) {
             rsl = sourceAccount.transfer(destinationAccount, amount);
         }
         return rsl;
