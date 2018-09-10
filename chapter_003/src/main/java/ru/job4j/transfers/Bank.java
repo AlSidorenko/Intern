@@ -24,7 +24,9 @@ public class Bank {
      * @param user - user.
      */
     public void addUser(User user) {
-        this.bank.putIfAbsent(user, new ArrayList<>());
+        if (user != null) {
+            this.bank.putIfAbsent(user, new ArrayList<>());
+        }
     }
 
     /**
@@ -32,8 +34,10 @@ public class Bank {
      *
      * @param user - user.
      */
-    public void delete(User user) {
-        this.bank.remove(user);
+    public void deleteUser(User user) {
+        if (user != null) {
+            this.bank.remove(user);
+        }
     }
 
     /**
@@ -42,8 +46,10 @@ public class Bank {
      * @param user    - user.
      * @param account - account.
      */
-    public void add(User user, Account account) {
-        this.bank.get(user).add(account);
+    public void addUserAccount(User user, Account account) {
+        if (user != null || account != null) {
+            this.bank.get(user).add(account);
+        }
     }
 
     /**
