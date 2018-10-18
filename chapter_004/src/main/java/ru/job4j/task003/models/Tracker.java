@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
  * Created on 08.08.2017.
@@ -31,9 +32,9 @@ public class Tracker {
     private static final Random RN = new Random();
 
     /**
-     * @param elemId - The index of the array.
+     * Functional interface.
      */
-    private int elemId = 0;
+    private Predicate<String> predicate;
 
     /**
      * Generate id.
@@ -73,10 +74,10 @@ public class Tracker {
      */
     public void delete(Item s) {
         Iterator iterator = items.iterator();
-
         while (iterator.hasNext()) {
             Item i = (Item) iterator.next();
-            if (i.getId().equals(s.getId())) {
+            predicate = (value) -> i.getId().equals(value);
+            if (predicate.test(s.getId())) {
                 iterator.remove();
             }
         }
@@ -96,13 +97,14 @@ public class Tracker {
      * @return - Data of the person.
      */
     public List<Item> findByName(String name) {
-        List<Item> temp = new ArrayList<>();
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i) != null && items.get(i).getName().equals(name)) {
-                temp.add(items.get(i));
+        List<Item> result = new ArrayList<>();
+        for (Item item : items) {
+            predicate = (value) -> item.getName().equals(value);
+            if (predicate.test(name)) {
+                result.add(item);
             }
         }
-        return temp;
+        return result;
     }
 
     /**
@@ -111,12 +113,14 @@ public class Tracker {
      * @return - Data of the person.
      */
     public Item findById(String id) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i) != null && items.get(i).getId().equals(id)) {
-                return items.get(i);
+        Item result = null;
+        for (Item item : items) {
+            predicate = (value) -> item.getId().equals(value);
+            if (predicate.test(id)) {
+                result = item;
             }
         }
-        return null;
+        return result;
     }
 
     /**
