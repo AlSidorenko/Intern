@@ -39,7 +39,7 @@ public class Tracker {
      * Generate id.
      * @return - id.
      */
-    private String generateId() {
+    public String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt(100));
     }
 
