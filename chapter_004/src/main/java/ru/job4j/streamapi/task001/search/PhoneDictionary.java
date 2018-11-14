@@ -2,6 +2,7 @@ package ru.job4j.streamapi.task001.search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created on 21.02.2018.
@@ -12,9 +13,7 @@ import java.util.List;
  */
 public class PhoneDictionary {
 
-    /**
-     * List of Person.
-     */
+    /**List of Person.*/
     private List<Person> persons = new ArrayList<Person>();
 
     /**
@@ -32,31 +31,8 @@ public class PhoneDictionary {
      * @return Список подощедщих пользователей.
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
-
-        for (Person person : persons) {
-            if (person.toString().contains(key))  {
-                result.add(person);
-            } else {
-                result.add(null);
-            }
-        }
-        /*
-        for (Person person : persons) {
-            if (person != null & person.getName().contains(key)) {
-                 result.add(person);
-            } else if (person != null & person.getSurname().contains(key)) {
-                result.add(person);
-            } else if (person != null & person.getPhone().contains(key)) {
-                result.add(person);
-            } else if (person != null & person.getAddress().contains(key)) {
-                result.add(person);
-            } else {
-                result.add(null);
-            }
-        }
-        */
-        return result;
+        return persons.stream().filter(i -> (i.getName().contains(key) || i.getSurname().contains(key)
+                || i.getPhone().contains(key) || i.getAddress().contains(key))).collect(Collectors.toList());
     }
 
     @Override

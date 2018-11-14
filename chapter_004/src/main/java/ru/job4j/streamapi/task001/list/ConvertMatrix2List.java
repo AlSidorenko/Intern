@@ -1,6 +1,7 @@
 package ru.job4j.streamapi.task001.list;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,11 +21,7 @@ public class ConvertMatrix2List {
 
     public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
-        for (int[] i : array) {
-            for (int j : i) {
-                list.add(j);
-            }
-        }
+        Arrays.stream(array).map(Arrays::stream).forEach(x -> x.forEach(list::add));
         return list;
     }
 }

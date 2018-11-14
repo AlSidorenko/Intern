@@ -3,6 +3,7 @@ package ru.job4j.streamapi.task001.transfers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * Created on 19.07.2018.
@@ -13,9 +14,7 @@ import java.util.TreeMap;
  */
 public class Bank {
 
-    /**
-     * A collection that indicates that each user can have a list of bank accounts.
-     */
+    /**A collection that indicates that each user can have a list of bank accounts.*/
     private TreeMap<User, ArrayList<Account>> bank = new TreeMap<>();
 
     /**
@@ -47,8 +46,15 @@ public class Bank {
      * @param account - account.
      */
     public void addUserAccount(User user, Account account) {
-        if (user != null || account != null) {
-            this.bank.get(user).add(account);
+        if (this.bank.keySet().stream()
+                .filter(s -> user.getPassport().equals(user.getPassport()))
+                .map(this.bank::get)
+                .flatMap(coll -> coll.stream())
+                .noneMatch(acc -> account.equals(acc))) {
+            this.bank.keySet().stream()
+                    .filter(s -> user.getPassport().equals(user.getPassport()))
+                    .map(this.bank::get)
+                    .forEach(list -> list.add(account));
         }
     }
 
@@ -86,11 +92,10 @@ public class Bank {
      * @return - collection user.
      */
     public List<Account> getUserAccounts(User user) {
-        List<Account> list = this.bank.get(user);
-        if (user.getName() == null || user.getPassport() == null) {
-            list = null;
-        }
-        return list;
+        List<List<Account>> list = this.bank.keySet().stream().filter(
+                key -> key.getPassport().equals(user.getPassport())
+        ).map(this.bank::get).collect(Collectors.toList());
+        return list.isEmpty() ? new ArrayList<>() : list.get(0);
     }
 
     /**
@@ -142,13 +147,10 @@ public class Bank {
      * @return - passport.
      */
     private User getUserByPassport(String srcPassport) {
-        User rsl = null;
-        for (User user : bank.keySet()) {
-            if (srcPassport.equals(user.getPassport())) {
-                rsl = user;
-            }
-        }
-        return rsl;
+        List<User> users = this.bank.keySet().stream().filter(
+                x -> srcPassport.equals(x.getPassport())
+        ).collect(Collectors.toList());
+        return users.isEmpty() ? null : users.get(0);
     }
 
     @Override

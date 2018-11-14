@@ -11,19 +11,13 @@ import java.util.Objects;
  */
 public class User {
 
-    /**
-     *id - number of user.
-     */
+    /**id - number of user.*/
     private int id;
 
-    /**
-     * name of user.
-     */
+    /**name of user.*/
     private String name;
 
-    /**
-     * city.
-     */
+    /**city.*/
     private String city;
 
     /**

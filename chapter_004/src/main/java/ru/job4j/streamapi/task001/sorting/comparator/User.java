@@ -11,14 +11,10 @@ import java.util.Objects;
  */
 public class User {
 
-    /**
-     * Name of user.
-     */
+    /**Name of user.*/
     private String name;
 
-    /**
-     * Age of user.
-     */
+    /**Age of user.*/
     private int age;
 
     /**
@@ -41,6 +37,13 @@ public class User {
         return name;
     }
 
+    /**
+     *
+     * @return - length of Name.
+     */
+    public int getNameLength() {
+        return this.name.length();
+    }
     /**
      * Method get.
      *

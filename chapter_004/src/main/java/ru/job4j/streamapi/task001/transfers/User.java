@@ -11,19 +11,13 @@ import java.util.Objects;
  */
 public class User implements Comparable<User> {
 
-    /**
-     * Name of user.
-     */
+    /**Name of user.*/
     private String name;
 
-    /**
-     * Passport data of user.
-     */
+    /**Passport data of user.*/
     private String passport;
 
-    /**
-     * Constructor.
-     */
+    /**Constructor.*/
     public User() {
     }
 

@@ -12,14 +12,10 @@ import java.util.Objects;
  */
 public class Account {
 
-    /**
-     * Amount of money on the account.
-     */
+    /**Amount of money on the account.*/
     private double values;
 
-    /**
-     * Requisites of the bank account.
-     */
+    /**Requisites of the bank account.*/
     private String requisites;
 
     /**

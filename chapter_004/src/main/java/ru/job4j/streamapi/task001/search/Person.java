@@ -9,29 +9,19 @@ package ru.job4j.streamapi.task001.search;
  */
 public class Person {
 
-    /**
-     * Variable name.
-     */
+    /**Variable name.*/
     private String name;
 
-    /**
-     * Variable Surname.
-     */
+    /**Variable Surname.*/
     private String surname;
 
-    /**
-     * Variable phone number.
-     */
+    /**Variable phone number.*/
     private String phone;
 
-    /**
-     * Variable address.
-     */
+    /**Variable address.*/
     private String address;
 
-    /**
-     * Constructor is empty.
-     */
+    /**Constructor is empty.*/
     public Person() {
     }
 

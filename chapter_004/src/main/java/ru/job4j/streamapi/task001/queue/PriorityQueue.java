@@ -1,6 +1,7 @@
 package ru.job4j.streamapi.task001.queue;
 
 import java.util.LinkedList;
+import java.util.stream.IntStream;
 
 /**
  * Created on 20.03.2018.
@@ -11,9 +12,7 @@ import java.util.LinkedList;
  */
 public class PriorityQueue {
 
-    /**
-     * Linked list.
-     */
+    /**Linked list.*/
     private LinkedList<Task> tasks = new LinkedList<>();
 
     /**
@@ -24,13 +23,8 @@ public class PriorityQueue {
         if (tasks.size() == 0) {
             tasks.add(task);
         }
-
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getPriority() > task.getPriority()) {
-                tasks.add(i, task);
-                break;
-            }
-        }
+        IntStream.range(0, tasks.size()).filter(i -> task.getPriority()
+                <= this.tasks.get(i).getPriority()).findFirst().ifPresent(i -> tasks.add(i, task));
     }
 
     /**

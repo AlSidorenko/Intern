@@ -9,14 +9,10 @@ package ru.job4j.streamapi.task001.queue;
  */
 public class Task {
 
-    /**
-     * Description.
-     */
+    /**Description.*/
     private String desc;
 
-    /**
-     * Priority - numb.
-     */
+    /**Priority - numb.*/
     private int priority;
 
     /**
