@@ -1,8 +1,10 @@
 package ru.job4j.streamapi.task002.transfers;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * Created on 19.07.2018.
@@ -47,9 +49,9 @@ public class Bank {
      * @param account - account.
      */
     public void addUserAccount(User user, Account account) {
-        if (user != null || account != null) {
-            this.bank.get(user).add(account);
-        }
+        this.bank.keySet().stream().filter(
+                client -> client.getPassport().equals(user.getPassport())).forEach(client ->
+                this.bank.get(user).add(account));
     }
 
     /**
@@ -59,14 +61,10 @@ public class Bank {
      * @param account - account.
      * @return - index of account.
      */
-    private Account getActualAccount(User user, Account account) {
-        Account index = null;
-        ArrayList<Account> list = this.bank.get(user);
-        if (user.getName() != null && user.getPassport() != null
-                && account.getRequisites() != null) {
-            index = list.get(list.indexOf(account));
-        }
-        return index;
+    public Account getActualAccount(User user, Account account) {
+        return bank.values().stream().flatMap(Collection::stream)
+                .filter(acc -> acc.getRequisites().equals(acc.getRequisites()))
+                .collect(Collectors.toCollection(ArrayList::new)).iterator().next();
     }
 
     /**
@@ -86,11 +84,8 @@ public class Bank {
      * @return - collection user.
      */
     public List<Account> getUserAccounts(User user) {
-        List<Account> list = this.bank.get(user);
-        if (user.getName() == null || user.getPassport() == null) {
-            list = null;
-        }
-        return list;
+        return  this.bank.keySet().stream().filter(client -> client.getPassport().equals(user.getPassport()))
+                .flatMap(client -> bank.get(user).stream()).collect(Collectors.toList());
     }
 
     /**
@@ -125,14 +120,10 @@ public class Bank {
      * @param srcRequisite - requisite.
      * @return - account.
      */
-    private Account getAccount(User sourceUser, String srcRequisite) {
-        Account rsl = null;
-        for (Account account : this.getUserAccounts(sourceUser)) {
-            if (srcRequisite.equals(account.getRequisites())) {
-                rsl = account;
-            }
-        }
-        return rsl;
+    public Account getAccount(User sourceUser, String srcRequisite) {
+        return bank.values().stream().flatMap(Collection::stream)
+                .filter(account -> account.getRequisites().equals(srcRequisite))
+                .collect(Collectors.toCollection(ArrayList::new)).iterator().next();
     }
 
     /**
@@ -141,14 +132,11 @@ public class Bank {
      * @param srcPassport - passport ID.
      * @return - passport.
      */
-    private User getUserByPassport(String srcPassport) {
-        User rsl = null;
-        for (User user : bank.keySet()) {
-            if (srcPassport.equals(user.getPassport())) {
-                rsl = user;
-            }
-        }
-        return rsl;
+    public User getUserByPassport(String srcPassport) {
+
+        return this.bank.keySet().stream().filter(
+                user -> user.getPassport().equals(srcPassport))
+                .collect(Collectors.toCollection(ArrayList::new)).iterator().next();
     }
 
     @Override
