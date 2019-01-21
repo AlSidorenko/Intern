@@ -1,4 +1,4 @@
-package ru.job4j.streamapi.task002;
+package ru.job4j.streamapi.task002.department;
 
 import org.junit.Test;
 

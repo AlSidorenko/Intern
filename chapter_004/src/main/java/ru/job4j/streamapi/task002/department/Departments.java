@@ -1,4 +1,4 @@
-package ru.job4j.streamapi.task002;
+package ru.job4j.streamapi.task002.department;
 
 import java.util.ArrayList;
 import java.util.Comparator;
