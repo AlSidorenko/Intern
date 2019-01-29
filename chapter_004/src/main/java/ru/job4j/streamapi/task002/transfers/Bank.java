@@ -62,9 +62,8 @@ public class Bank {
      * @return - index of account.
      */
     public Account getActualAccount(User user, Account account) {
-        return bank.values().stream().flatMap(Collection::stream)
-                .filter(acc -> acc.getRequisites().equals(acc.getRequisites()))
-                .collect(Collectors.toCollection(ArrayList::new)).iterator().next();
+        ArrayList<Account> list = this.bank.get(user);
+        return list.get(list.indexOf(account));
     }
 
     /**
