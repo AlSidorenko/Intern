@@ -62,8 +62,13 @@ public class Bank {
      * @return - index of account.
      */
     public Account getActualAccount(User user, Account account) {
+        Account index = null;
         ArrayList<Account> list = this.bank.get(user);
-        return list.get(list.indexOf(account));
+        if (user.getName() != null && user.getPassport() != null
+                && account.getRequisites() != null) {
+            index = list.get(list.indexOf(account));
+        }
+        return index;
     }
 
     /**
